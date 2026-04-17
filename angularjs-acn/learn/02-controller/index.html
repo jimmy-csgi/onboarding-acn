@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 2 — Controller + one-way display
+
+    ng-controller="MainController as vm" creates one controller instance for
+    this subtree and aliases it as "vm" in the template.
+
+    {{ vm.message }} is interpolation: Angular puts the value into the DOM.
+    (Rough React analogy: {vm.message} in JSX, but vm comes from the framework.)
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 2</title>
+  </head>
+  <body ng-controller="MainController as vm">
+    <h1>{{ vm.message }}</h1>
+    <p><a href="../03-ng-model/index.html">Next: step 3 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

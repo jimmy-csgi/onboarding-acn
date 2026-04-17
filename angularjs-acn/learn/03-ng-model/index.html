@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 3 — Two-way binding with ng-model
+
+    ng-model="vm.acn" links the <input> value to vm.acn:
+      typing updates vm.acn
+      changing vm.acn in code would update the input (not shown here)
+
+    React analogy: a controlled input, but you write ng-model instead of
+    value + onChange yourself.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 3</title>
+  </head>
+  <body ng-controller="MainController as vm">
+    <label>
+      Type anything:
+      <input type="text" ng-model="vm.acn" />
+    </label>
+    <p>Live value: <strong>{{ vm.acn }}</strong></p>
+    <p><a href="../04-factory/index.html">Next: step 4 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

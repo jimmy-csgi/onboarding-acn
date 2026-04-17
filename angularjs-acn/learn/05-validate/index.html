@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 5 — Same factory, now validate() + explicit "Check" button
+
+    ng-click="vm.check()" runs controller code when the user clicks.
+    (React: onClick={() => ...})
+
+    We still store raw typing in vm.acn; normalize + validate run on demand.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 5</title>
+  </head>
+  <body ng-controller="MainController as vm">
+    <label>
+      ACN:
+      <input type="text" ng-model="vm.acn" />
+    </label>
+    <button type="button" ng-click="vm.check()">Check</button>
+
+    <p ng-if="vm.result === true">Valid ACN.</p>
+    <p ng-if="vm.result === false">Not a valid ACN (wrong length or check digit).</p>
+
+    <p>Try: <code>004 085 616</code> or <code>004085616</code></p>
+    <p><a href="../06-directive-parsers/index.html">Next: step 6 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

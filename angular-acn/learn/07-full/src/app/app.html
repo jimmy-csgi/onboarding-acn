@@ -1,0 +1,35 @@
+<main class="wrap">
+  <h1>ACN validator (step 7 — full)</h1>
+  <p class="lede">
+    Reactive <code>FormGroup</code> + live validator (like deriving <code>errors</code> / validity from the field on each
+    change). Enter an Australian Company Number (nine digits) with or without spaces
+    (<code>nnn nnn nnn</code> or <code>nnnnnnnnn</code>). The ninth digit is a check digit.
+  </p>
+
+  <form [formGroup]="form">
+    <label class="field">
+      <span class="label">ACN</span>
+      <input
+        type="text"
+        formControlName="acn"
+        autocomplete="off"
+        inputmode="numeric"
+        placeholder="004 085 616"
+        class="input"
+        maxlength="11"
+      />
+    </label>
+  </form>
+
+  @if (normalized(); as n) {
+    @if (form.controls.acn.hasError('incomplete')) {
+      <p class="msg incomplete">Enter all nine digits (spaces are optional).</p>
+    }
+    @if (form.controls.acn.hasError('checksum')) {
+      <p class="msg bad">This nine-digit number is not a valid ACN (check digit fails).</p>
+    }
+    @if (showValidBanner()) {
+      <p class="msg ok">Valid ACN: <strong>{{ formatted() }}</strong></p>
+    }
+  }
+</main>

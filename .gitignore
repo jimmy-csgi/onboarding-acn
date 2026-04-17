@@ -1,0 +1,7 @@
+# Dependencies & build output
+angular-acn/node_modules/
+angular-acn/dist/
+angular-acn/.angular/
+angularjs-acn/node_modules/
+
+.DS_Store

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 6 — Directive + $parsers (view → model)
+
+    acn-input sits on the same element as ng-model.
+    require: 'ngModel' gives the directive the ngModelController.
+
+    Each $parser runs when the view value changes. We return the value that
+    should be stored on vm.acn. That string is built by acnValidator.parseAcnModelValue
+    (same logic as the factory — not normalize(), which only removes spaces).
+
+    You can still type spaces; they never reach vm.acn.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 6</title>
+  </head>
+  <body ng-controller="MainController as vm">
+    <label>
+      ACN (directive cleans input):
+      <input type="text" ng-model="vm.acn" acn-input />
+    </label>
+    <p>Model value (digits only): <strong>{{ vm.acn }}</strong></p>
+    <button type="button" ng-click="vm.check()">Check</button>
+    <p ng-if="vm.result === true">Valid.</p>
+    <p ng-if="vm.result === false">Invalid.</p>
+    <p><a href="../07-directive-full/index.html">Next: step 7 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

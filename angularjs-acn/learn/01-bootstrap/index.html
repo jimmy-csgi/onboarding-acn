@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 1 — Bootstrap only
+
+    ng-app="acnApp" tells AngularJS: "start the app named acnApp on this element
+    and everything inside it."
+
+    app.js must call angular.module('acnApp', []) so that name exists.
+    The second argument [] means "this module depends on no other modules."
+
+    Run from repo root, e.g.:
+      cd angularjs-acn && npx --yes http-server -p 8080 -c-1
+    Then open: http://localhost:8080/learn/01-bootstrap/index.html
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 1</title>
+  </head>
+  <body>
+    <p>Static HTML. Angular has bootstrapped; we are not showing any binding yet.</p>
+    <p>Open DevTools → Console. You should see no Angular bootstrap errors.</p>
+    <p><a href="../02-controller/index.html">Next: step 2 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

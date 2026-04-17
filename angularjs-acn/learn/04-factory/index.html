@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 4 — Service: factory + dependency injection
+
+    .factory('acnValidator', fn) registers a singleton built from fn's return value.
+
+    The controller lists acnValidator as a parameter; Angular passes it in.
+    (React has no built-in DI; you'd import a function instead.)
+
+    Here we only implement normalize() — same idea as stripping spaces for ACN.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 4</title>
+  </head>
+  <body ng-controller="MainController as vm">
+    <label>
+      ACN (with or without spaces):
+      <input type="text" ng-model="vm.acn" />
+    </label>
+    <p>What you typed: <strong>{{ vm.acn }}</strong></p>
+    <p>Normalized (no spaces): <strong>{{ vm.normalized() }}</strong></p>
+    <p><a href="../05-validate/index.html">Next: step 5 →</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

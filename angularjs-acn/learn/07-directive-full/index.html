@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <!--
+    STEP 7 — Same as your finished src/ app (conceptually)
+
+    - $formatters: model is nine digits; input DISPLAY adds spaces (nnn nnn nnn).
+    - $timeout + $processModelValue: Angular skips formatters on keystrokes; we re-run model→view.
+    - $setValidity: form can read $error.acnChecksum and $error.acnComplete.
+    - filter acnDisplay: pretty print under the input.
+    - keydown + paste on the element: block letters/symbols (formatter alone cannot).
+
+    After this, compare with ../src/index.html + ../src/app.js (full copy).
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS learn — step 7</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 28rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      .msg {
+        margin-top: 1rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+      }
+      .incomplete {
+        background: #f3f4f6;
+      }
+      .ok {
+        background: #ecfdf5;
+      }
+      .bad {
+        background: #fef2f2;
+      }
+    </style>
+  </head>
+  <body ng-controller="MainController as vm">
+    <h1>ACN (full flow)</h1>
+
+    <form name="acnForm" novalidate>
+      <label>
+        ACN
+        <input type="text" name="acnField" ng-model="vm.acn" acn-input maxlength="11" />
+      </label>
+
+      <p
+        class="msg incomplete"
+        ng-if="acnForm.acnField.$dirty && acnForm.acnField.$error.acnComplete && vm.acn.length"
+      >
+        Enter all nine digits (spaces are optional).
+      </p>
+      <p class="msg ok" ng-if="vm.acn.length === 9 && !acnForm.acnField.$error.acnChecksum">
+        Valid ACN: <strong>{{ vm.acn | acnDisplay }}</strong>
+      </p>
+      <p class="msg bad" ng-if="vm.acn.length === 9 && acnForm.acnField.$error.acnChecksum">
+        Not a valid ACN (check digit fails).
+      </p>
+    </form>
+
+    <p style="margin-top: 2rem"><a href="../01-bootstrap/index.html">Back to step 1</a></p>
+
+    <script src="../../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
