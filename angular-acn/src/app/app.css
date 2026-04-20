@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  font-family: system-ui, sans-serif;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 650;
+  margin: 0 0 0.5rem;
+}
+
+.lede {
+  margin: 0 0 1.5rem;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
+.input {
+  font-size: 1.25rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 1px;
+  border-color: #2563eb;
+}
+
+.msg {
+  margin: 1rem 0 0;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.msg.incomplete {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.msg.ok {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.msg.bad {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+code {
+  font-size: 0.9em;
+}

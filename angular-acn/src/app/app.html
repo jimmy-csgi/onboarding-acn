@@ -1,0 +1,34 @@
+<main class="wrap">
+  <h1>ACN validator</h1>
+  <p class="lede">
+    Type nine digits — spaces are inserted automatically in the field (AngularJS-style formatter).
+    The stored value is still digits-only; pasted text is cleaned to digits. The ninth digit is the check digit.
+  </p>
+
+  <label class="field">
+    <span class="label">ACN</span>
+    <input
+      type="text"
+      name="acn"
+      appAcnDigitsOnly
+      [ngModel]="displayValue()"
+      (ngModelChange)="onChange($event)"
+      (paste)="onPaste($event)"
+      autocomplete="off"
+      inputmode="numeric"
+      placeholder="004 085 616"
+      class="input"
+      maxlength="11"
+    />
+  </label>
+
+  @if (status() === 'incomplete') {
+    <p class="msg incomplete">Enter all nine digits.</p>
+  }
+  @if (status() === 'valid') {
+    <p class="msg ok">Valid ACN: <strong>{{ validDisplay() }}</strong></p>
+  }
+  @if (status() === 'invalid') {
+    <p class="msg bad">This nine-digit number is not a valid ACN (check digit fails).</p>
+  }
+</main>
