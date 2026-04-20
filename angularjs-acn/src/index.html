@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="acnApp">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ACN validator (AngularJS)</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        color: #1a1a1a;
+        line-height: 1.5;
+        margin: 0;
+      }
+      .wrap {
+        max-width: 32rem;
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+      }
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 650;
+        margin: 0 0 0.5rem;
+      }
+      .lede {
+        margin: 0 0 1.5rem;
+        color: #444;
+        font-size: 0.95rem;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #555;
+      }
+      .input {
+        font-size: 1.25rem;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .input:focus {
+        outline: 2px solid #2563eb;
+        outline-offset: 1px;
+        border-color: #2563eb;
+      }
+      .msg {
+        margin: 1rem 0 0;
+        padding: 0.65rem 0.85rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+      .msg.incomplete {
+        background: #f3f4f6;
+        color: #374151;
+      }
+      .msg.ok {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .msg.bad {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      code {
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body ng-controller="MainController as vm">
+    <main class="wrap">
+      <h1>ACN validator</h1>
+      <p class="lede">
+        Enter an Australian Company Number (nine digits) with or without spaces
+        (<code>nnn nnn nnn</code> or <code>nnnnnnnnn</code>). The ninth digit is a check digit.
+      </p>
+
+      <form name="acnForm" novalidate>
+        <label class="field">
+          <span class="label">ACN</span>
+          <input
+            class="input"
+            type="text"
+            name="acnField"
+            ng-model="vm.digits"
+            acn-input
+            autocomplete="off"
+            inputmode="numeric"
+            placeholder="004 085 616"
+            maxlength="11"
+          />
+        </label>
+
+        <p
+          class="msg incomplete"
+          ng-if="acnForm.acnField.$dirty && acnForm.acnField.$error[vm.errors.COMPLETE] && vm.digits.length"
+        >
+          Enter all nine digits (spaces are optional).
+        </p>
+        <p class="msg ok" ng-if="vm.digits.length === 9 && !acnForm.acnField.$error[vm.errors.CHECKSUM]">
+          Valid ACN: <strong>{{ vm.digits | formatAcn }}</strong>
+        </p>
+        <p class="msg bad" ng-if="vm.digits.length === 9 && acnForm.acnField.$error[vm.errors.CHECKSUM]">
+          This nine-digit number is not a valid ACN (check digit fails).
+        </p>
+      </form>
+    </main>
+
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
